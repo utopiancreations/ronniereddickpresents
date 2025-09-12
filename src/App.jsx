@@ -10,11 +10,13 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import VideoBackground from './components/VideoBackground';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <VideoBackground />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

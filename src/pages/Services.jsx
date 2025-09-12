@@ -9,6 +9,8 @@ const Services = () => {
     const [headerRef, headerInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [cardsRef, cardsInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
+    const [hoveredCard, setHoveredCard] = useState(null);
+
     useEffect(() => {
         setTimeout(() => {
             setServices(mockServices);
@@ -39,6 +41,8 @@ const Services = () => {
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={cardsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
+                        onHoverStart={() => setHoveredCard(index)}
+                        onHoverEnd={() => setHoveredCard(null)}
                     >
                         <Link to={`/services/${service.slug}`} className="card-link">
                             <motion.div 
@@ -48,7 +52,7 @@ const Services = () => {
                             >
                                 <div className="card-body d-flex flex-column align-items-center justify-content-center">
                                     <motion.h5 
-                                        className="card-title"
+                                        className={`card-title ${hoveredCard === index ? 'electric-text' : 'shimmer-text'}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={cardsInView ? { opacity: 1, y: 0 } : {}}
                                         transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}

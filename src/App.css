@@ -101,7 +101,7 @@ p, label, small, .form-label, .form-check-label, .blockquote-footer {
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--text-color);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -109,6 +109,18 @@ a {
 a:hover {
   color: var(--accent-hover);
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.nav-link,
+.mobile-nav-link {
+    color: var(--text-color) !important;
+}
+
+.nav-link:hover,
+.nav-link.active,
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    color: var(--accent-color) !important;
 }
 
 /* --- PREMIUM BUTTON STYLES --- */
@@ -311,6 +323,38 @@ a:hover {
     opacity: 1; 
     transform: translateY(0);
   }
+}
+
+/* --- SHIMMER ANIMATION --- */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes electric {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--accent-hover), 0 0 20px var(--accent-hover), 0 0 30px var(--accent-color), 0 0 40px var(--accent-color);
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(to right, var(--accent-color) 40%, var(--accent-hover) 50%, var(--accent-color) 60%);
+  background-size: 2000px 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite;
+}
+
+.electric-text {
+  animation: electric 1.5s infinite;
 }
 
 /* --- TALENT GRID ENHANCEMENTS --- */

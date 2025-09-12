@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import HeroCarousel from '../components/HeroCarousel';
 import VideoHero from '../components/VideoHero';
 import Lightbox from '../components/Lightbox';
 import './Home.css';
@@ -62,7 +61,7 @@ const Home = () => {
         >
             {/* Hero Section */}
             <section className="hero-section">
-                <HeroCarousel />
+                <VideoHero />
             </section>
 
             {/* Mission Statement */}

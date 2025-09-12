@@ -204,7 +204,7 @@ export const mockHeroSlides = [
     title: "Ronnie Reddick Presents",
     description: "Where artistry meets opportunity. Experience the future of entertainment with our premier talent management.",
     mediaType: "video",
-    mediaUrl: "/ronnieloopcompressed.mp4",
+    mediaUrl: "/ronnieloop_web.mp4",
     poster: girls,
     link: "/about"
   },
