@@ -1,0 +1,44 @@
+.optimized-image-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.optimized-image, .optimized-image-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.optimized-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(5px);
+  transform: scale(1.1);
+}
+
+.optimized-image {
+  position: relative;
+  z-index: 1;
+}
+
+.optimized-image-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  color: #6c757d;
+  min-height: 200px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.optimized-image-error i {
+  font-size: 48px;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}

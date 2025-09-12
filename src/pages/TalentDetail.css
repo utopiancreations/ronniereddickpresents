@@ -1,0 +1,172 @@
+.talent-detail-page {
+    padding: 2rem 0;
+}
+
+.talent-main-image {
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 3px solid rgba(212, 175, 55, 0.3);
+}
+
+.talent-bio {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.social-links-detail {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-link-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.social-link-item:hover {
+    background: var(--accent-color);
+    color: #0a0a0a;
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+.events-section {
+    margin-top: 4rem;
+}
+
+.talent-detail-page .events-section h2 {
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.events-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 2px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.event-card {
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover::before {
+    transform: scaleX(1);
+}
+
+.event-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.event-card h5 {
+    color: var(--accent-color) !important;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.event-date {
+    color: var(--text-color) !important;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.event-location {
+    color: rgba(224, 224, 224, 0.8) !important;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.past-event {
+    opacity: 0.7;
+    border-color: rgba(212, 175, 55, 0.1);
+}
+
+.past-event h5 {
+    color: rgba(212, 175, 55, 0.7) !important;
+}
+
+.no-events {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(224, 224, 224, 0.6) !important;
+    font-style: italic;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: 15px;
+    border: 2px dashed rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 768px) {
+    .talent-detail-page {
+        padding: 1rem 0;
+    }
+    
+    .social-links-detail {
+        gap: 15px;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    
+    .social-link-item {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .talent-bio {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+}

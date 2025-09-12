@@ -1,0 +1,120 @@
+.service-page {
+    padding: 2rem 0;
+}
+
+.service-header {
+    padding: 4rem 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 3rem;
+}
+
+.service-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.service-header .lead {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.service-features {
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 3rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.feature-item:hover {
+    color: var(--accent-color);
+}
+
+.feature-item i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.featured-talent-section h2 {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.featured-talent-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 2px;
+}
+
+/* This ensures all text within the service page inherits the correct global color */
+.service-page p, .service-page li {
+    color: var(--text-color);
+}
+
+.service-page h5 {
+    color: var(--heading-color);
+    margin-top: 1.5rem;
+}
+
+.service-page ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-page ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.featured-talent-section .talent-card {
+    text-decoration: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.talent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.talent-card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.featured-talent-section .talent-card .card-title {
+    color: var(--heading-color);
+}
+
+@media (max-width: 768px) {
+    .service-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .service-features {
+        padding: 2rem 1rem;
+    }
+    
+    .feature-item {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,176 @@
+.hero-carousel-container {
+    position: relative;
+    height: calc(85vh - 20px);
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel, .carousel-inner, .carousel-item {
+    height: calc(85vh - 20px);
+}
+
+.video-slide-container {
+    position: relative;
+    height: calc(85vh - 20px);
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Filter only for image backgrounds, not videos */
+.carousel-media:not(video) {
+    filter: brightness(0.4) contrast(1.1);
+}
+
+/* Video-specific optimizations */
+video.carousel-media {
+    object-position: center center;
+    background-color: #000;
+    z-index: 1;
+    display: block !important;
+    visibility: visible !important;
+    filter: none; /* Remove dimming for boomerang video */
+}
+
+/* Fallback for video loading */
+video.carousel-media:not([data-loaded]) {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
+.carousel-caption-custom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+    z-index: 10;
+}
+
+.carousel-caption-custom h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #d4af37, #f7d872);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.carousel-caption-custom p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+    line-height: 1.6;
+}
+
+.hero-cta {
+    font-size: 1.1rem;
+    padding: 15px 40px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--accent-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-cta:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+}
+
+/* Floating elements */
+.floating-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.floating-element-1 {
+    top: 20%;
+    left: 10%;
+    width: 150px;
+    height: 150px;
+}
+
+.floating-element-2 {
+    bottom: 20%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+}
+
+/* Enhanced carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+.carousel-indicators {
+    bottom: 30px;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(212, 175, 55, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .hero-carousel-container {
+        height: calc(70vh - 20px);
+        margin-top: 20px;
+        border-radius: 8px;
+    }
+    
+    .carousel, .carousel-inner, .carousel-item {
+        height: calc(70vh - 20px);
+    }
+    
+    .carousel-caption-custom h1 {
+        font-size: 2.5rem;
+    }
+    .carousel-caption-custom p {
+        font-size: 1rem;
+    }
+    .hero-cta {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    .floating-element {
+        display: none;
+    }
+}

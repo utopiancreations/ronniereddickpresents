@@ -1,0 +1,14 @@
+.footer {
+    border-top: 1px solid #333;
+}
+
+.social-icons .social-icon {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    color: #cda45e; /* Gold accent color */
+}
