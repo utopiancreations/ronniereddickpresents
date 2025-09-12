@@ -96,18 +96,10 @@ const Header = () => {
           {mobileMenuOpen && (
             <motion.nav
               className="mobile-nav"
-              initial={{ opacity: 0, height: 0, y: -20 }}
-              animate={{ opacity: 1, height: 'auto', y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -20 }}
+              initial={{ opacity: 0, maxHeight: 0, y: -20 }}
+              animate={{ opacity: 1, maxHeight: '500px', y: 0 }} // Use a reasonable max-height
+              exit={{ opacity: 0, maxHeight: 0, y: -20 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              drag="y"
-              dragConstraints={{ top: 0, bottom: 0 }}
-              dragElastic={0.2}
-              onDragEnd={(event, info) => {
-                if (info.offset.y < -50) {
-                  closeMobileMenu();
-                }
-              }}
             >
               <motion.ul
                 className="mobile-nav-list"
