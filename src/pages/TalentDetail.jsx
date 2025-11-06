@@ -2,42 +2,63 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faTwitter, faTiktok, faSnapchatGhost } from '@fortawesome/free-brands-svg-icons';
 import './TalentDetail.css';
-import { mockData } from '../data/mockData';
 
 const TalentDetail = () => {
     const { id } = useParams();
     const [talent, setTalent] = useState(null);
+    const [error, setError] = useState(null);
     const [profileRef, profileInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [eventsRef, eventsInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
     useEffect(() => {
-        setTimeout(() => {
-            const foundTalent = mockData.talent.find(t => t.id === parseInt(id));
-            setTalent(foundTalent);
-        }, 300);
+        const fetchTalent = async () => {
+            try {
+                const result = await axios.get(`/api/talent/${id}`);
+                setTalent(result.data);
+            } catch (err) {
+                console.error('Error fetching talent details:', err);
+                setError('Failed to load talent details. Please try again later.');
+            }
+        };
+
+        fetchTalent();
     }, [id]);
 
-    if (!talent) return (
-        <div className="loading-container">
-            <motion.div 
-                className="loading-spinner"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-        </div>
-    );
+    if (error) {
+        return (
+            <div className="loading-container">
+                <div className="text-center" style={{ color: 'var(--gold)', fontSize: '1.2rem' }}>
+                    {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!talent) {
+        return (
+            <div className="loading-container">
+                <motion.div
+                    className="loading-spinner"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+        );
+    }
 
     const now = new Date();
     const upcomingEvents = talent.events.filter(e => new Date(e.date) >= now).sort((a, b) => new Date(a.date) - new Date(b.date));
     const pastEvents = talent.events.filter(e => new Date(e.date) < now).sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const socialIcons = {
-        instagram: 'fab fa-instagram',
-        twitter: 'fab fa-twitter',
-        tiktok: 'fab fa-tiktok',
-        bluesky: 'fab fa-bluesky',
-        snapchat: 'fab fa-snapchat-ghost',
+        instagram: faInstagram,
+        twitter: faTwitter,
+        tiktok: faTiktok,
+        snapchat: faSnapchatGhost,
     };
 
     return (
@@ -95,18 +116,18 @@ const TalentDetail = () => {
                         animate={profileInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.6 }}
                     >
-                        {Object.entries(talent.socials).map(([platform, link]) => 
-                            link && (
-                                <motion.a 
-                                    key={platform} 
-                                    href={link} 
-                                    target="_blank" 
+                        {Object.entries(talent.socials).map(([platform, link]) =>
+                            link && socialIcons[platform] && (
+                                <motion.a
+                                    key={platform}
+                                    href={link}
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-link-item"
                                     whileHover={{ scale: 1.3, rotate: 10 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    <i className={socialIcons[platform]}></i>
+                                    <FontAwesomeIcon icon={socialIcons[platform]} />
                                 </motion.a>
                             )
                         )}

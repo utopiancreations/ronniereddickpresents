@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExpandAlt } from '@fortawesome/free-solid-svg-icons';
 import VideoHero from '../components/VideoHero';
 import Lightbox from '../components/Lightbox';
+import WhatWeOffer from '../components/WhatWeOffer';
 import './Home.css';
-import { mockData } from '../data/mockData';
 import girls from '../assets/images/ronnieandthegirls.jpg';
 import ft1 from '../assets/images/fixedtalent1.png';
 import ft2 from '../assets/images/fixedtalent2.png';
@@ -17,40 +20,78 @@ import ft8 from '../assets/images/fixedtalent8.jpg';
 import ft9 from '../assets/images/fixedtalent9.jpg';
 
 const Home = () => {
+    const galleryImages = [girls, ft1, ft2, ft3, ft4, ft5, ft6, ft7, ft8, ft9];
+
     const [data, setData] = useState(null);
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [lightboxImage, setLightboxImage] = useState({ src: '', alt: '' });
+    const [error, setError] = useState(null);
+    const [lightboxIndex, setLightboxIndex] = useState(null);
     const [missionRef, missionInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [talentRef, talentInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [galleryRef, galleryInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [testimonialsRef, testimonialsInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
     useEffect(() => {
-        // Simulate loading delay for smooth experience
-        setTimeout(() => {
-            setData(mockData);
-        }, 500);
+        const fetchData = async () => {
+            try {
+                const [aboutRes, talentRes, testimonialsRes] = await Promise.all([
+                    axios.get('/api/about'),
+                    axios.get('/api/talent'),
+                    axios.get('/api/testimonials')
+                ]);
+
+                setData({
+                    about: aboutRes.data,
+                    talent: talentRes.data,
+                    testimonials: testimonialsRes.data
+                });
+            } catch (err) {
+                console.error('Error fetching home data:', err);
+                setError('Failed to load page data. Please try again later.');
+            }
+        };
+
+        fetchData();
     }, []);
 
-    const openLightbox = (src, alt) => {
-        setLightboxImage({ src, alt });
-        setLightboxOpen(true);
+    const openLightbox = (index) => {
+        setLightboxIndex(index);
     };
 
     const closeLightbox = () => {
-        setLightboxOpen(false);
-        setLightboxImage({ src: '', alt: '' });
+        setLightboxIndex(null);
     };
 
-    if (!data) return (
-        <div className="loading-container">
-            <motion.div 
-                className="loading-spinner"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-        </div>
-    );
+    const handleNext = () => {
+        if (lightboxIndex === null) return;
+        setLightboxIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
+    };
+
+    const handlePrevious = () => {
+        if (lightboxIndex === null) return;
+        setLightboxIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
+    };
+
+    if (error) {
+        return (
+            <div className="loading-container">
+                <div className="text-center" style={{ color: 'var(--gold)', fontSize: '1.2rem' }}>
+                    {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!data) {
+        return (
+            <div className="loading-container">
+                <motion.div
+                    className="loading-spinner"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+        );
+    }
 
     return (
         <motion.div 
@@ -141,6 +182,9 @@ const Home = () => {
                 </div>
             </motion.section>
 
+            {/* What We Offer */}
+            <WhatWeOffer />
+
             {/* Gallery */}
             <motion.section 
                 ref={galleryRef}
@@ -158,20 +202,20 @@ const Home = () => {
                     Highlights
                 </motion.h2>
                 <div className="masonry-grid">
-                    {[girls, ft1, ft2, ft3, ft4, ft5, ft6, ft7, ft8, ft9].map((src, idx) => (
-                        <motion.figure 
-                            key={idx} 
+                    {galleryImages.map((src, idx) => (
+                        <motion.figure
+                            key={idx}
                             className="masonry-item"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={galleryInView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.6, delay: 0.1 * idx }}
                             whileHover={{ scale: 1.05, y: -5 }}
-                            onClick={() => openLightbox(src, `Highlight ${idx + 1}`)}
+                            onClick={() => openLightbox(idx)}
                             style={{ cursor: 'pointer' }}
                         >
                             <img src={src} alt={`Highlight ${idx + 1}`} loading="lazy" />
                             <div className="image-overlay">
-                                <i className="fas fa-expand-alt"></i>
+                                <FontAwesomeIcon icon={faExpandAlt} />
                             </div>
                         </motion.figure>
                     ))}
@@ -230,10 +274,12 @@ const Home = () => {
             </motion.section>
 
             <Lightbox
-                isOpen={lightboxOpen}
-                imageSrc={lightboxImage.src}
-                imageAlt={lightboxImage.alt}
+                isOpen={lightboxIndex !== null}
+                imageSrc={lightboxIndex !== null ? galleryImages[lightboxIndex] : ''}
+                imageAlt={lightboxIndex !== null ? `Highlight ${lightboxIndex + 1}` : ''}
                 onClose={closeLightbox}
+                onNext={handleNext}
+                onPrevious={handlePrevious}
             />
         </motion.div>
     );

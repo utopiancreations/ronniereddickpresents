@@ -125,75 +125,69 @@ export const mockData = {
 
 export const mockServices = [
   {
+    title: "Privé Cabaret",
+    slug: "prive-cabaret",
+    description: "Intimate and exclusive cabaret performances tailored for private events.",
+    features: [
+      "Bespoke show creation",
+      "World-class performers",
+      "Full production & styling",
+      "Unforgettable atmosphere"
+    ]
+  },
+  {
+    title: "Dancers",
+    slug: "dancers",
+    description: "Professional dancers skilled in multiple disciplines for stage shows, music videos, and events.",
+    features: [
+      "Choreography services",
+      "Backup dancers",
+      "Specialty acts (e.g., aerial, fire)",
+      "Ensemble performances"
+    ]
+  },
+  {
+    title: "Singers & Bands",
+    slug: "singers-bands",
+    description: "From powerhouse vocalists to full-piece bands for any occasion.",
+    features: [
+      "Solo artists",
+      "Jazz trios",
+      "Top 40 cover bands",
+      "R&B and Soul ensembles"
+    ]
+  },
+  {
+    title: "Corporate Gigs",
+    slug: "corporate-gigs",
+    description: "High-quality, professional entertainment to elevate your corporate event.",
+    features: [
+      "Keynote performances",
+      "Award show entertainment",
+      "Holiday party shows",
+      "Brand activations"
+    ]
+  },
+  {
+    title: "Pride Events",
+    slug: "pride-events",
+    description: "Vibrant, high-energy entertainment for Pride festivals, parades, and parties.",
+    features: [
+      "Drag performances",
+      "Live vocalists",
+      "High-energy dance numbers",
+      "Hosting & MC services"
+    ]
+  },
+  {
     title: "Artist Management",
     slug: "artist-management",
     description: "Comprehensive career development and strategic planning for emerging and established artists.",
     features: [
-      "Career strategy and planning",
-      "Brand development and positioning",
-      "Industry networking and connections",
-      "Performance opportunities",
-      "Recording and production guidance"
-    ]
-  },
-  {
-    title: "Event Production",
-    slug: "event-production",
-    description: "Full-service event planning and production for concerts, festivals, and private events.",
-    features: [
-      "Venue selection and booking",
-      "Technical production management",
-      "Artist coordination and scheduling",
-      "Marketing and promotion",
-      "On-site event management"
-    ]
-  },
-  {
-    title: "Talent Booking",
-    slug: "talent-booking",
-    description: "Professional talent booking services connecting venues with the perfect artists for their events.",
-    features: [
-      "Curated artist roster",
-      "Event-specific recommendations",
-      "Contract negotiation",
-      "Performance logistics",
-      "Quality assurance"
-    ]
-  },
-  {
-    title: "Recording Services",
-    slug: "recording-services",
-    description: "State-of-the-art recording facilities and production services for artists at all levels.",
-    features: [
-      "Professional recording studios",
-      "Experienced producers and engineers",
-      "Mixing and mastering services",
-      "Music video production",
-      "Distribution assistance"
-    ]
-  },
-  {
-    title: "Artist Development",
-    slug: "artist-development",
-    description: "Comprehensive programs designed to nurture talent and accelerate artistic growth.",
-    features: [
-      "Vocal and performance coaching",
-      "Songwriting workshops",
-      "Stage presence training",
-      "Industry education",
-      "Mentorship programs"
-    ]
-  },
-  {
-    title: "Marketing & Promotion",
-    slug: "marketing-promotion",
-    description: "Strategic marketing campaigns and promotional services to amplify artist reach and engagement.",
-    features: [
-      "Social media management",
-      "Press relations and media outreach",
-      "Digital marketing campaigns",
-      "Brand partnerships",
-      "Fan engagement strategies"
+      "Career strategy",
+      "Brand development",
+      "Industry networking",
+      "Booking services"
     ]
   }
 ];

@@ -1,30 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { mockData } from '../data/mockData';
+import axios from 'axios';
 import girls from '../assets/images/ronnieandthegirls.jpg';
 
 const About = () => {
     const [about, setAbout] = useState(null);
+    const [error, setError] = useState(null);
     const [heroRef, heroInView] = useInView({ threshold: 0.2, triggerOnce: true });
     const [ronnieRef, ronnieInView] = useInView({ threshold: 0.2, triggerOnce: true });
     const [companyRef, companyInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
     useEffect(() => {
-        setTimeout(() => {
-            setAbout(mockData.about);
-        }, 300);
+        const fetchAbout = async () => {
+            try {
+                const result = await axios.get('/api/about');
+                setAbout(result.data);
+            } catch (err) {
+                console.error('Error fetching about data:', err);
+                setError('Failed to load about information. Please try again later.');
+            }
+        };
+
+        fetchAbout();
     }, []);
 
-    if (!about) return (
-        <div className="loading-container">
-            <motion.div 
-                className="loading-spinner"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-        </div>
-    );
+    if (error) {
+        return (
+            <div className="loading-container">
+                <div className="text-center" style={{ color: 'var(--gold)', fontSize: '1.2rem' }}>
+                    {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!about) {
+        return (
+            <div className="loading-container">
+                <motion.div
+                    className="loading-spinner"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+        );
+    }
 
     return (
         <motion.div 

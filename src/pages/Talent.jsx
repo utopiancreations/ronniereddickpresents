@@ -2,21 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faTwitter, faTiktok, faSnapchatGhost } from '@fortawesome/free-brands-svg-icons';
 import EditModal from '../components/admin/EditModal';
 import './Talent.css';
-import { mockData } from '../data/mockData';
 
 const Talent = () => {
-    const [talent, setTalent] = useState([]);
+    const [talent, setTalent] = useState(null);
+    const [error, setError] = useState(null);
     const [showBookingModal, setShowBookingModal] = useState(false);
     const [selectedTalent, setSelectedTalent] = useState(null);
     const [formData, setFormData] = useState({ name: '', email: '', message: '', referredBy: '', lookingFor: '', budget: '' });
     const [headerRef, headerInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
     useEffect(() => {
-        setTimeout(() => {
-            setTalent(mockData.talent);
-        }, 300);
+        const fetchTalent = async () => {
+            try {
+                const result = await axios.get('/api/talent');
+                setTalent(result.data);
+            } catch (err) {
+                console.error('Error fetching talent:', err);
+                setError('Failed to load talent. Please try again later.');
+            }
+        };
+
+        fetchTalent();
     }, []);
 
     const handleBookClick = (t) => {
@@ -48,12 +59,33 @@ const Talent = () => {
     };
 
     const socialIcons = {
-        instagram: 'fab fa-instagram',
-        twitter: 'fab fa-twitter',
-        tiktok: 'fab fa-tiktok',
-        bluesky: 'fab fa-bluesky',
-        snapchat: 'fab fa-snapchat-ghost',
+        instagram: faInstagram,
+        twitter: faTwitter,
+        tiktok: faTiktok,
+        snapchat: faSnapchatGhost,
     };
+
+    if (error) {
+        return (
+            <div className="loading-container">
+                <div className="text-center" style={{ color: 'var(--gold)', fontSize: '1.2rem' }}>
+                    {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!talent) {
+        return (
+            <div className="loading-container">
+                <motion.div
+                    className="loading-spinner"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+        );
+    }
 
     return (
         <>
@@ -118,17 +150,17 @@ const Talent = () => {
                                         animate={headerInView ? { opacity: 1 } : {}}
                                         transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
                                     >
-                                        {Object.entries(t.socials).map(([platform, link]) => 
-                                            link && (
-                                                <motion.a 
-                                                    key={platform} 
-                                                    href={link} 
-                                                    target="_blank" 
+                                        {Object.entries(t.socials).map(([platform, link]) =>
+                                            link && socialIcons[platform] && (
+                                                <motion.a
+                                                    key={platform}
+                                                    href={link}
+                                                    target="_blank"
                                                     rel="noopener noreferrer"
                                                     whileHover={{ scale: 1.2, color: "#d4af37" }}
                                                     whileTap={{ scale: 0.9 }}
                                                 >
-                                                    <i className={socialIcons[platform]}></i>
+                                                    <FontAwesomeIcon icon={socialIcons[platform]} />
                                                 </motion.a>
                                             )
                                         )}

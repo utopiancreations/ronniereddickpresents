@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import './Footer.css';
 
 const Footer = () => {
@@ -9,7 +11,7 @@ const Footer = () => {
       <div className="container centered-layout">
         <div className="social-icons mb-3">
           <a href="https://www.instagram.com/ronniereddickpresents" target="_blank" rel="noopener noreferrer" className="social-icon">
-            <i className="fab fa-instagram"></i>
+            <FontAwesomeIcon icon={faInstagram} />
           </a>
           {/* Add other social media links here */}
         </div>

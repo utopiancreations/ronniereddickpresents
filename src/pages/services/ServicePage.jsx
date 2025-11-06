@@ -2,38 +2,65 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './ServicePage.css';
-import { mockServices, mockData } from '../../data/mockData';
 
 const ServicePage = () => {
     const { serviceName } = useParams();
     const [service, setService] = useState(null);
     const [featuredTalent, setFeaturedTalent] = useState([]);
+    const [error, setError] = useState(null);
     const [headerRef, headerInView] = useInView({ threshold: 0.1, triggerOnce: true });
     const [featuresRef, featuresInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
     useEffect(() => {
-        setTimeout(() => {
-            const foundService = mockServices.find(s => s.slug === serviceName);
-            setService(foundService);
+        const fetchData = async () => {
+            try {
+                const [servicesRes, talentRes] = await Promise.all([
+                    axios.get('/api/services'),
+                    axios.get('/api/talent')
+                ]);
 
-            if (foundService) {
-                // Get random talent for this service
-                const shuffledTalent = [...mockData.talent].sort(() => 0.5 - Math.random());
-                setFeaturedTalent(shuffledTalent.slice(0, 3));
+                const foundService = servicesRes.data.find(s => s.slug === serviceName);
+                setService(foundService);
+
+                if (foundService && talentRes.data) {
+                    // Get random talent for this service
+                    const shuffledTalent = [...talentRes.data].sort(() => 0.5 - Math.random());
+                    setFeaturedTalent(shuffledTalent.slice(0, 3));
+                }
+            } catch (err) {
+                console.error('Error fetching service data:', err);
+                setError('Failed to load service details. Please try again later.');
             }
-        }, 300);
+        };
+
+        fetchData();
     }, [serviceName]);
 
-    if (!service) return (
-        <div className="loading-container">
-            <motion.div 
-                className="loading-spinner"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-        </div>
-    );
+    if (error) {
+        return (
+            <div className="loading-container">
+                <div className="text-center" style={{ color: 'var(--gold)', fontSize: '1.2rem' }}>
+                    {error}
+                </div>
+            </div>
+        );
+    }
+
+    if (!service) {
+        return (
+            <div className="loading-container">
+                <motion.div
+                    className="loading-spinner"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+            </div>
+        );
+    }
 
     return (
         <motion.div 
@@ -91,7 +118,7 @@ const ServicePage = () => {
                             transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
                         >
                             <div className="feature-item">
-                                <i className="fas fa-check-circle me-3"></i>
+                                <FontAwesomeIcon icon={faCheckCircle} className="me-3" />
                                 <span>{feature}</span>
                             </div>
                         </motion.div>
