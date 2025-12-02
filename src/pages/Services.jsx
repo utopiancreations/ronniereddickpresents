@@ -18,13 +18,13 @@ const Services = () => {
     }, []);
 
     return (
-        <motion.div 
+        <motion.div
             className="services-page centered-layout"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            <motion.h1 
+            <motion.h1
                 ref={headerRef}
                 className="text-center mb-5"
                 initial={{ opacity: 0, y: 50 }}
@@ -35,8 +35,8 @@ const Services = () => {
             </motion.h1>
             <div className="row" ref={cardsRef}>
                 {services.map((service, index) => (
-                    <motion.div 
-                        key={index} 
+                    <motion.div
+                        key={index}
                         className="col-md-4 mb-4"
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={cardsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
@@ -44,14 +44,14 @@ const Services = () => {
                         onHoverStart={() => setHoveredCard(index)}
                         onHoverEnd={() => setHoveredCard(null)}
                     >
-                        <Link to={`/services/${service.slug}`} className="card-link">
-                            <motion.div 
+                        <Link to={`/services/${service.slug}`} className="card-link text-decoration-none">
+                            <motion.div
                                 className="card h-100 text-center service-card"
                                 whileHover={{ y: -10, scale: 1.02 }}
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <motion.h5 
+                                    <motion.h5
                                         className={`card-title ${hoveredCard === index ? 'electric-text' : 'shimmer-text'}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={cardsInView ? { opacity: 1, y: 0 } : {}}
@@ -59,7 +59,7 @@ const Services = () => {
                                     >
                                         {service.title}
                                     </motion.h5>
-                                    <motion.p 
+                                    <motion.p
                                         className="card-text mt-3"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={cardsInView ? { opacity: 1, y: 0 } : {}}
@@ -67,7 +67,7 @@ const Services = () => {
                                     >
                                         {service.description}
                                     </motion.p>
-                                    <motion.div 
+                                    <motion.div
                                         className="service-arrow mt-auto"
                                         initial={{ opacity: 0, scale: 0 }}
                                         animate={cardsInView ? { opacity: 1, scale: 1 } : {}}

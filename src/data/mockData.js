@@ -13,9 +13,95 @@ import girls from '../assets/images/ronnieandthegirls.jpg';
 export const mockData = {
   about: {
     company: "Ronnie Reddick Presents is a premier talent management and entertainment company dedicated to discovering, developing, and promoting exceptional artists. We believe in the power of authentic artistry and work tirelessly to create opportunities for our talent to shine on stages across the nation.",
-    ronnie: "Ronnie Reddick is a visionary entrepreneur and talent manager with over 15 years of experience in the entertainment industry. Known for his keen eye for talent and innovative approach to artist development, Ronnie has helped launch the careers of numerous successful performers. His passion for music and commitment to excellence have made him a respected figure in the industry.",
+    ronnie: {
+      roleTitle: "Choreographer | Creative Director | Educator",
+      intro: "Ronnie Reddick is one of the San Francisco Bay Area’s most dynamic multi-talented performer/choreographers, maintaining a sharp edge on what is happening in the world of dance today. A multi-faceted, San Francisco-based creative, Reddick has made his mark by combining Hip Hop, Jazz, and other performance genres to create one of the most explosive and dynamic styles to hit the contemporary dance scene, solidifying his reputation as one of the most sought-after choreographers in the industry.",
+      sections: [
+        {
+          title: "Creative Direction & Television",
+          content: "For over 26 years, Mr. Reddick served as the Choreographer and Creative Show Director at the iconic <a href='https://www.instagram.com/officialasiasf/?hl=en' target='_blank' rel='noopener noreferrer' class='text-warning text-decoration-none'>Asia SF</a>. This unique restaurant and dining experience took the world by storm, featuring performances by some of the most beautiful Transgender women in the world. Expanding on this legacy, Mr. Reddick served as the Show Director and Choreographer for Season 1 and Season 2 of the groundbreaking docu-series “Transcendent” on the Fuse Network. Featuring the Ladies of Asia SF, the show received a nomination for a GLAAD Award."
+        },
+        {
+          title: "Education & Instruction",
+          content: "A dedicated educator, Mr. Reddick serves on the faculty at Stanford University. He has also taught Hip Hop classes at Santa Clara University, Princeton University, Pepperdine University, UCLA, and the University of Kentucky in association with The US Performing Arts Co. He has danced and taught Master Classes in cities and countries globally, spanning the United States, Japan, China, Canada, Korea, and Mexico."
+        },
+        {
+          title: "Industry Credits & Client Roster",
+          content: "In the entertainment world, Ronnie has worked with a vast array of major artists, including Michael & Janet Jackson, Deborah Cox, Paula Abdul, Jon Secada, Kristine W., Jody Watley, Liza Minelli, Mariah Carey, Corinne Bailey Rae, Santana, Ultra Nate, Tone/Tony/Toni, Kelly Price, Vicky Shepard, RuPaul, Overtone (Clint Eastwood’s Acappella boy band), Abigail, Honey Luv, and M.C. Hammer.<br><br>His corporate portfolio includes work for Sony Playstation, Gap, Macy’s, MAC Viva Glam Cosmetics, SF Junior League, Nordstrom, ADP, Starbucks, API, Oracle, Facebook, Cisco Systems, Apple Computer, Google, BEBE, Univision Television, E*Trade, Coca Cola, Microsoft, Bill Graham Presents, National Semiconductor, and a video for Hillary Clinton’s 2008 Presidential Campaign.<br><br>Additionally, Ronnie currently choreographs and tours with prominent corporate bands, including “Bill Hopkins & the Rockin Orchestra”, “Pride & Joy”, “Savior Faire”, “Big City”, Masterpierce, the Kent Strand Orchestra, and “The Fundamentals”."
+        },
+        {
+          title: "Fashion & Sports Choreography",
+          content: "Mr. Reddick has established a strong presence in the fashion industry, working with clients such as Macy’s, Burberry, Wilkes Bashford, BeBe, and Dunlap Productions. He has trained and continues to work with many of SF/LA’s top runway models.<br><br>His influence extends to professional sports entertainment, where he has trained choreographers and dancers for major cheer squads, including the Sacramento Kings, Goldrush Girls (S.F. 49ers), Raiderettes & Warrior Girls (Oakland), USF Dance Team (SF), the San Jose SaberCats, and recently the Valkyries Violets."
+        },
+        {
+          title: "Mentorship & Legacy",
+          content: "Ronnie founded three of the hottest dance groups to hit the Bay Area: “City Slam”, “La Femme Panache & Le Men”. “City Slam” was a group of professional dancers (ages 9 & up) who have gone on to work professionally worldwide. Alumni include Jeri & Monique Slaughter, Tanee McCall, Duvon Evans, Kristen Oei, Peter Chursin, Sam Cahn, and Lucy Legaspi.<br><br>His dancers have worked in major entertainment arenas, including the Academy Awards, movies, and stage productions such as “Rent”, Celine Dion’s “A New Day”, “Jubilee”, “We Will Rock You”, ”Aida”, “Dream Girls”, “Wicked”, and the “Lion King”. They have performed alongside artists including Janet Jackson, Madonna, Beyonce’, Britney Spears, Will Smith, Jeanie Tracy, Missy Elliott, Snoop Dogg, Brian McKnight, Jennifer Lopez, Christina Aguilera, the Dixie Chicks, Chayanne, TLC, Jocelyn Enriquez, and Usher.<br><br>Ronnie trains his talent to dance from the inside out, emphasizing that understanding the business is vital for every aspiring artist."
+        }
+      ],
+      quote: "Technique is only the beginning of what makes a memorable dancer, and we don’t start dancing to end up doing chorus, you have got to have that extra something."
+    },
     ronnieImage: girls,
     companyImage: ft7
+  },
+  resume: {
+    info: {
+      height: "5'10",
+      eyes: "Dark Brown",
+      weight: "160lbs",
+      hair: "Dk Brown",
+      affiliation: "SAG/AFTRA"
+    },
+    credits: [
+      {
+        category: "Film/Television",
+        items: [
+          { project: "Red Tails", role: "Pilot", company: "Lucas Films" },
+          { project: "In the Loop", role: "Host", company: "Gap" },
+          { project: "Nash Bridges", role: "Contestant", company: "Off Duty Prod. Int." }
+        ]
+      },
+      {
+        category: "Corporate/Live Shows",
+        items: [
+          { project: "Bio-Rad", role: "Choreographer/Director", company: "Innovative Entertainment" },
+          { project: "Netflix", role: "Choreographer/Dancer", company: "Hopkins Productions" },
+          { project: "Nike", role: "Choreographer/Dancer", company: "Nike/Hopkins Prod." },
+          { project: "Naspers Event", role: "Choreographer", company: "MIH Holding ltd." },
+          { project: "SF Intl. Pow Wow", role: "Choreographer/Dancer", company: "SF Travel Assoc." },
+          { project: "Pixar (Opening for Toy Story 3)", role: "Choreographer/Dancer", company: "Innovative Entertainment" },
+          { project: "Junior League Show 2010/11", role: "Choreographer", company: "Macy’s Spec.Events" },
+          { project: "Stanford Cancer Benefit", role: "Choreographer/Dancer", company: "Robert Fountain Prod." },
+          { project: "American Fidelity Group", role: "Choreographer/Dancer", company: "Hopkins Prod. (Oklahoma/Costa Rica/Dominican Rep./Nevis/Huntington Beach/Cancun/Calgary)" },
+          { project: "Calloway Golf Tournament", role: "Choreographer/Dancer", company: "Hopkins Productions" },
+          { project: "National Life Ins.", role: "Choreographer/Dancer", company: "Hopkins Productions" },
+          { project: "Intuit Holiday Event", role: "Choreographer/Dancer", company: "AEC" },
+          { project: "Cisco Intl. FlashMob", role: "Choreographer/Dancer", company: "AEC" }
+        ]
+      },
+      {
+        category: "Video",
+        items: [
+          { project: "Nothing at all", role: "Dancer", company: "Santana/Musiq" },
+          { project: "Gone too Soon", role: "Double", company: "Michael Jackson/Propaganda Films" },
+          { project: "How Do u like it", role: "Dancer", company: "Keith Sweat/Feat. Left Eye (TLC)" },
+          { project: "MCHammer Here Comes the Hammer", role: "Dancer/Double", company: "Busted Productions" }
+        ]
+      },
+      {
+        category: "Theater/Stage",
+        items: [
+          { project: "Overtone the Band", role: "Choreographer", company: "Clint/Dina Eastwood" },
+          { project: "Deborah Cox", role: "Choreographer/Dancer", company: "J Records" },
+          { project: "Christine W.", role: "Choreographer/Dancer", company: "Sony Music" },
+          { project: "Angelina/Spanish Fly", role: "Choreographer", company: "Upstairs Records" },
+          { project: "Honey Luv", role: "Choreographer", company: "Universal Records" },
+          { project: "Black Nativity", role: "Choreographer/Joseph", company: "Lorainne Hansberry Theater" },
+          { project: "Chorus Line", role: "Richie", company: "CCSF" },
+          { project: "Gypsy", role: "Farmboy", company: "CCSF" }
+        ]
+      }
+    ],
+    specialSkills: "Hip Hop/Jazz/Pop Choreography, Print modeling, Lip Syncing, Currently Show Director/Choreographer at ASIASF & currently touring w/the Bill Hopkins Band"
   },
   talent: [
     {
